@@ -75,3 +75,8 @@ func (s *GsetUnSafe) Merge(gs Gset) {
 		return true
 	})
 }
+
+// Clear
+func (s *GsetUnSafe) Clear() {
+	s.m = make(map[interface{}]struct{})
+}

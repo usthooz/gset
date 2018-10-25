@@ -8,6 +8,7 @@ type Gset interface {
 	List() []interface{}
 	Each(func(interface{}) bool)
 	Merge(s Gset)
+	Clear()
 }
 
 type gset struct {
