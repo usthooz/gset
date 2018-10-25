@@ -33,3 +33,12 @@ func Test_GsetUnsafe_Merge(t *testing.T) {
 	sa.Merge(sa1)
 	t.Logf("sa len: %d", sa.Len())
 }
+
+func Test_GsetUnsafe_Clear(t *testing.T) {
+	sa := New()
+	sa.Add("1")
+	sa.Add("2")
+	t.Logf("sa len: %d", sa.Len())
+	sa.Clear()
+	t.Logf("cleared sa len: %d", sa.Len())
+}
