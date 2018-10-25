@@ -1,5 +1,10 @@
 package gset
 
+import (
+	"fmt"
+	"strings"
+)
+
 type GsetUnSafe struct {
 	gset
 }
@@ -79,4 +84,13 @@ func (s *GsetUnSafe) Merge(gs Gset) {
 // Clear
 func (s *GsetUnSafe) Clear() {
 	s.m = make(map[interface{}]struct{})
+}
+
+// String [1,2,3,4]
+func (s *GsetUnSafe) String() string {
+	t := make([]string, 0, len(s.List()))
+	for _, item := range s.List() {
+		t = append(t, fmt.Sprintf("%v", item))
+	}
+	return fmt.Sprintf("[%s]", strings.Join(t, ", "))
 }
