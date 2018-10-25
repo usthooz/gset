@@ -10,6 +10,7 @@ type Gset interface {
 	Each(func(interface{}) bool)
 	Merge(s Gset)
 	Clear()
+	Copy() Gset
 }
 
 type gset struct {

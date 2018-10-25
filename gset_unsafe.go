@@ -83,7 +83,7 @@ func (s *GsetUnSafe) Merge(gs Gset) {
 
 // Clear
 func (s *GsetUnSafe) Clear() {
-	s.m = make(map[interface{}]struct{})
+	s.m = make(map[interface{}]bool)
 }
 
 // String [1,2,3,4]
@@ -93,4 +93,13 @@ func (s *GsetUnSafe) String() string {
 		t = append(t, fmt.Sprintf("%v", item))
 	}
 	return fmt.Sprintf("[%s]", strings.Join(t, ", "))
+}
+
+// Copy returns a new Set
+func (s *GsetUnSafe) Copy() Gset {
+	u := newGetUnsafe()
+	for item := range s.m {
+		u.Add(item)
+	}
+	return u
 }
