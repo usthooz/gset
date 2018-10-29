@@ -55,6 +55,25 @@ func (s *GsetUnSafe) IsEmpty() bool {
 	return s.Len() == 0
 }
 
+// Has
+func (s *GsetUnSafe) Has(elems ...interface{}) bool {
+	var (
+		has bool
+	)
+	if len(elems) == 0 {
+		// default false
+		return has
+	}
+	has = true
+	for _, elem := range elems {
+		if _, has = s.m[elem]; !has {
+			// nothing
+			break
+		}
+	}
+	return has
+}
+
 // List set convert to list
 func (s *GsetUnSafe) List() []interface{} {
 	list := make([]interface{}, 0, len(s.m))

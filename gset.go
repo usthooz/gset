@@ -5,6 +5,7 @@ type Gset interface {
 	Remove(elems ...interface{}) bool
 	Len() int
 	IsEmpty() bool
+	Has(elems ...interface{}) bool
 	String() string
 	List() []interface{}
 	Each(func(interface{}) bool)
