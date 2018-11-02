@@ -6,7 +6,7 @@ type (
 
 const (
 	ThreadSafe = iota
-	UnThreadSafe
+	ThreadUnSafe
 )
 
 type Gset interface {
@@ -29,7 +29,7 @@ type gset struct {
 
 // New  new gset
 func New(safeType SafeType) Gset {
-	if safeType == UnThreadSafe {
+	if safeType == ThreadUnSafe {
 		return newGsetUnsafe()
 	}
 	return newGsetSafe()

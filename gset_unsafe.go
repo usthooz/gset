@@ -116,7 +116,7 @@ func (s *GsetUnSafe) String() string {
 
 // Copy returns a new Set
 func (s *GsetUnSafe) Copy() Gset {
-	u := newGetUnsafe()
+	u := newGsetUnsafe()
 	for item := range s.m {
 		u.Add(item)
 	}
