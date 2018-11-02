@@ -1,5 +1,14 @@
 package gset
 
+type (
+	SafeType int
+)
+
+const (
+	ThreadSafe = iota
+	UnThreadSafe
+)
+
 type Gset interface {
 	Add(elems ...interface{}) bool
 	Remove(elems ...interface{}) bool
@@ -19,6 +28,9 @@ type gset struct {
 }
 
 // New  new gset
-func New() Gset {
-	return newGetUnsafe()
+func New(safeType SafeType) Gset {
+	if safeType == UnThreadSafe {
+		return newGsetUnsafe()
+	}
+	return newGsetSafe()
 }
