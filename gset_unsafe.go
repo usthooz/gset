@@ -9,8 +9,8 @@ type GsetUnSafe struct {
 	gset
 }
 
-// newGetUnsafe new gset as thread un safe
-func newGetUnsafe() *GsetUnSafe {
+// newGsetUnsafe new gset as thread un safe
+func newGsetUnsafe() *GsetUnSafe {
 	s := &GsetUnSafe{}
 	s.m = make(map[interface{}]bool)
 	var (
