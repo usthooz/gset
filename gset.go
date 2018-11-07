@@ -34,3 +34,19 @@ func New(safeType SafeType) Gset {
 	}
 	return newGsetSafe()
 }
+
+// Union
+func Union(set1, set2 Gset, sets ...Gset) Gset {
+	u := set1.Copy()
+	set2.Each(func(elem interface{}) bool {
+		u.Add(elem)
+		return true
+	})
+	for _, set := range sets {
+		set.Each(func(elem interface{}) bool {
+			u.Add(elem)
+			return true
+		})
+	}
+	return u
+}
