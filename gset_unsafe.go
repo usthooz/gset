@@ -122,3 +122,8 @@ func (s *GsetUnSafe) Copy() Gset {
 	}
 	return u
 }
+
+// Separate
+func (s *GsetUnSafe) Separate(t Gset) {
+	s.Remove(t.List()...)
+}
