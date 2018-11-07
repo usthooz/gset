@@ -155,3 +155,8 @@ func (s *GsetSafe) Copy() Gset {
 	}
 	return u
 }
+
+// Separate
+func (s *GsetSafe) Separate(t Gset) {
+	s.Remove(t.List()...)
+}
