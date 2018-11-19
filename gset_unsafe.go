@@ -5,14 +5,19 @@ import (
 	"strings"
 )
 
+// GsetUnSafe this thread un safe
 type GsetUnSafe struct {
 	gset
 }
 
 // newGsetUnsafe new gset as thread un safe
-func newGsetUnsafe() *GsetUnSafe {
+func newGsetUnsafe(size ...int) *GsetUnSafe {
 	s := &GsetUnSafe{}
-	s.m = make(map[interface{}]bool)
+	if len(size) > 0 {
+		s.m = make(map[interface{}]bool, size[0])
+	} else {
+		s.m = make(map[interface{}]bool)
+	}
 	var (
 		_ Gset = s
 	)

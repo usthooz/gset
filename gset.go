@@ -29,11 +29,11 @@ type gset struct {
 }
 
 // New  new gset
-func New(safeType SafeType) Gset {
+func New(safeType SafeType, size ...int) Gset {
 	if safeType == ThreadUnSafe {
-		return newGsetUnsafe()
+		return newGsetUnsafe(size...)
 	}
-	return newGsetSafe()
+	return newGsetSafe(size...)
 }
 
 // Union 合并

@@ -6,15 +6,20 @@ import (
 	"sync"
 )
 
+// GsetSafe this thread safe
 type GsetSafe struct {
 	gset
 	l sync.RWMutex
 }
 
 // newGsetSafe new gset as thread un safe
-func newGsetSafe() *GsetSafe {
+func newGsetSafe(size ...int) *GsetSafe {
 	s := &GsetSafe{}
-	s.m = make(map[interface{}]bool)
+	if len(size) > 0 {
+		s.m = make(map[interface{}]bool, size[0])
+	} else {
+		s.m = make(map[interface{}]bool)
+	}
 	var (
 		_ Gset = s
 	)
