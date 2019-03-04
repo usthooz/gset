@@ -62,7 +62,7 @@ func (s *GsetUnSafe) IsEmpty() bool {
 
 // IsEqual
 func (s *GsetUnSafe) IsEqual(t Gset) bool {
-	if conv, ok := t.(*GsetUnSafe); ok {
+	if conv, ok := t.(*GsetSafe); ok {
 		conv.l.RLock()
 		defer conv.l.RUnlock()
 	}
@@ -80,9 +80,7 @@ func (s *GsetUnSafe) IsEqual(t Gset) bool {
 
 // IsSubset
 func (s *GsetUnSafe) IsSubset(t Gset) (subset bool) {
-	var (
-		subset = true
-	)
+	subset = true
 	t.Each(func(item interface{}) bool {
 		_, subset = s.m[item]
 		return subset
