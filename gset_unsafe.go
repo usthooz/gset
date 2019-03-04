@@ -78,6 +78,18 @@ func (s *GsetUnSafe) IsEqual(t Gset) bool {
 	return equal
 }
 
+// IsSubset
+func (s *GsetUnSafe) IsSubset(t Gset) (subset bool) {
+	var (
+		subset = true
+	)
+	t.Each(func(item interface{}) bool {
+		_, subset = s.m[item]
+		return subset
+	})
+	return
+}
+
 // Has
 func (s *GsetUnSafe) Has(elems ...interface{}) bool {
 	var (
