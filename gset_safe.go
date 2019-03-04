@@ -74,6 +74,29 @@ func (s *GsetSafe) IsEmpty() bool {
 	return l == 0
 }
 
+// IsEqual
+func (s *GsetSafe) IsEqual(t Gset) bool {
+	s.l.Lock()
+	defer s.l.Unlock()
+
+	if conv, ok := t.(*GsetSafe); ok {
+		conv.l.RLock()
+		defer conv.l.RUnlock()
+	}
+
+	// return false 长度不相同
+	if sameSize := len(s.m) == t.Len(); !sameSize {
+		return false
+	}
+
+	equal := true
+	t.Each(func(item interface{}) bool {
+		_, equal = s.m[item]
+		return equal
+	})
+	return equal
+}
+
 // Has
 func (s *GsetSafe) Has(elems ...interface{}) bool {
 	var (

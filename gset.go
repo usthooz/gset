@@ -14,6 +14,9 @@ type Gset interface {
 	Remove(elems ...interface{}) bool
 	Len() int
 	IsEmpty() bool
+	IsEqual(s Gset) bool
+	IsSubset(s Gset) bool
+	IsSuperset(s Gset) bool
 	Has(elems ...interface{}) bool
 	String() string
 	List() []interface{}
