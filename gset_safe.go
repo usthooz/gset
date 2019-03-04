@@ -83,18 +83,31 @@ func (s *GsetSafe) IsEqual(t Gset) bool {
 		conv.l.RLock()
 		defer conv.l.RUnlock()
 	}
-
 	// return false 长度不相同
 	if sameSize := len(s.m) == t.Len(); !sameSize {
 		return false
 	}
-
 	equal := true
 	t.Each(func(item interface{}) bool {
 		_, equal = s.m[item]
 		return equal
 	})
 	return equal
+}
+
+// IsSubset
+func (s *GsetSafe) IsSubset(t Gset) (subset bool) {
+	s.l.Lock()
+	defer s.l.Unlock()
+
+	var (
+		subset = true
+	)
+	t.Each(func(item interface{}) bool {
+		_, subset = s.m[item]
+		return subset
+	})
+	return
 }
 
 // Has
