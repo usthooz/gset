@@ -60,6 +60,24 @@ func (s *GsetUnSafe) IsEmpty() bool {
 	return s.Len() == 0
 }
 
+// IsEqual
+func (s *GsetUnSafe) IsEqual(t Gset) bool {
+	if conv, ok := t.(*GsetUnSafe); ok {
+		conv.l.RLock()
+		defer conv.l.RUnlock()
+	}
+	// return false 长度不相同
+	if sameSize := len(s.m) == t.Len(); !sameSize {
+		return false
+	}
+	equal := true
+	t.Each(func(item interface{}) bool {
+		_, equal = s.m[item]
+		return equal
+	})
+	return equal
+}
+
 // Has
 func (s *GsetUnSafe) Has(elems ...interface{}) bool {
 	var (
