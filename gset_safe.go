@@ -110,6 +110,11 @@ func (s *GsetSafe) IsSubset(t Gset) (subset bool) {
 	return
 }
 
+// IsSuperset
+func (s *GsetUnSafe) IsSuperset(t Gset) bool {
+	return t.IsSubset(s)
+}
+
 // Has
 func (s *GsetSafe) Has(elems ...interface{}) bool {
 	var (
