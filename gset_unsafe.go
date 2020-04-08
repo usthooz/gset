@@ -39,8 +39,8 @@ func (s *GsetUnSafe) Add(elems ...interface{}) bool {
 	return true
 }
 
-// Add add string slice
-func (s *GsetUnSafe) AddStringSlice(elems []string) bool {
+// Add add string elem
+func (s *GsetUnSafe) AddString(elems ...string) bool {
 	if len(elems) == 0 {
 		return false
 	}

@@ -41,8 +41,8 @@ func (s *GsetSafe) Add(elems ...interface{}) bool {
 	return true
 }
 
-// Add add string slice
-func (s *GsetSafe) AddStringSlice(elems []string) bool {
+// Add add string elem
+func (s *GsetSafe) AddString(elems ...string) bool {
 	if len(elems) == 0 {
 		return false
 	}
