@@ -41,6 +41,21 @@ func (s *GsetSafe) Add(elems ...interface{}) bool {
 	return true
 }
 
+// Add add string slice
+func (s *GsetSafe) AddStringSlice(elems []string) bool {
+	if len(elems) == 0 {
+		return false
+	}
+	for _, elem := range elems {
+		if s.m[elem] {
+			// exists
+			continue
+		}
+		s.m[elem] = true
+	}
+	return true
+}
+
 // Remove add
 func (s *GsetSafe) Remove(elems ...interface{}) bool {
 	if len(elems) == 0 {

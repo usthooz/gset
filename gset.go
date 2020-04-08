@@ -11,6 +11,7 @@ const (
 
 type Gset interface {
 	Add(elems ...interface{}) bool
+	AddStringSlice(elems []string) bool
 	Remove(elems ...interface{}) bool
 	Len() int
 	IsEmpty() bool
