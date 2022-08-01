@@ -11,3 +11,50 @@ Golang实现的集合操作。
 3. 并集
 4. 复制
 5. 比较
+
+### Example
+
+```
+import "testing"
+
+func Test_GsetUnsafe_Add(t *testing.T) {
+	sa := New(ThreadUnSafe)
+	sa.Add("1")
+	sa.Add("2")
+	t.Logf("len: %d", sa.Len())
+}
+
+func Test_GsetUnsafe_Remove(t *testing.T) {
+	sa := New(ThreadUnSafe)
+	sa.Add("1")
+	sa.Add("2")
+	sa.Remove("1")
+	t.Logf("len: %d", sa.Len())
+}
+
+func Test_GsetUnsafe_IsEmpty(t *testing.T) {
+	sa := New(ThreadUnSafe)
+	sa.Add("1")
+	t.Log("is empty:", sa.IsEmpty())
+}
+
+func Test_GsetUnsafe_Merge(t *testing.T) {
+	sa := New(ThreadUnSafe)
+	sa.Add("1")
+	sa.Add("2")
+	sa1 := New(ThreadUnSafe)
+	sa1.Add("1")
+	sa1.Add("3")
+	sa.Merge(sa1)
+	t.Logf("sa len: %d", sa.Len())
+}
+
+func Test_GsetUnsafe_Clear(t *testing.T) {
+	sa := New(ThreadUnSafe)
+	sa.Add("1")
+	sa.Add("2")
+	t.Logf("sa len: %d", sa.Len())
+	sa.Clear()
+	t.Logf("cleared sa len: %d", sa.Len())
+}
+```
